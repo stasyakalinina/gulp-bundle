@@ -8,11 +8,12 @@ header {
     height: 73px; }
 
 .intro {
-  padding: 40px 0;
+  padding: 45px 0;
   background-color: #37B6CE; }
   .intro__title {
     color: purple; }
   .intro__text {
+    font-style: italic;
     color: green; }
 
 /*# sourceMappingURL=styles.css.map */

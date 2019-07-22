@@ -24,8 +24,16 @@ gulp.task('clean', function () {
 });
 
 gulp.task('assets', function() {
-  return gulp.src('src/assets/**')
+  return gulp.src('src/assets/**', {since: gulp.lastRun('assets')})
+    .pipe(debug({title: 'assets'}))
     .pipe(gulp.dest('public'));
 });
 
+gulp.task('watch', function() {
+  gulp.watch('src/styles/**/*.*', gulp.series('styles'));
+  gulp.watch('src/assets/**/*.*', gulp.series('assets'));
+});
+
 gulp.task('build', gulp.series('clean', gulp.parallel('assets','styles')));
+
+gulp.task('dev', gulp.series('build', 'watch'));
