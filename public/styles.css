@@ -1,0 +1,18 @@
+header {
+  padding: 25px 0;
+  background-color: #C9F76F; }
+  header img {
+    display: block;
+    margin: 0 0 10px;
+    width: 73px;
+    height: 73px; }
+
+.intro {
+  padding: 40px 0;
+  background-color: #37B6CE; }
+  .intro__title {
+    color: purple; }
+  .intro__text {
+    color: green; }
+
+/*# sourceMappingURL=styles.css.map */
