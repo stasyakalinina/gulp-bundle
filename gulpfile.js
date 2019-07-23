@@ -9,6 +9,7 @@ const gulpIf = require('gulp-if');
 const del = require('del');
 const newer = require('gulp-newer');
 const isDevelopment = !process.env.NODE_ENV || process.env.NODE_ENV == 'development';
+const browserSync = require('browser-sync').create();
 
 gulp.task('styles', function() {
   return gulp.src('src/styles/styles.scss')
@@ -36,6 +37,14 @@ gulp.task('watch', function() {
   gulp.watch('src/assets/**/*.*', gulp.series('assets'));
 });
 
+gulp.task('server', function() {
+  browserSync.init({
+    server: "public"
+  });
+
+  browserSync.watch('public/**/*.*').on('change', browserSync.reload);
+});
+
 gulp.task('build', gulp.series('clean', gulp.parallel('assets','styles')));
 
-gulp.task('dev', gulp.series('build', 'watch'));
+gulp.task('dev', gulp.series('build', gulp.parallel('watch', 'server')));
