@@ -10,9 +10,11 @@ const del = require('del');
 const newer = require('gulp-newer');
 const isDevelopment = !process.env.NODE_ENV || process.env.NODE_ENV == 'development';
 const browserSync = require('browser-sync').create();
+const plumber = require('gulp-plumber');
 
 gulp.task('styles', function() {
   return gulp.src('src/styles/styles.scss')
+    .pipe(plumber())
     .pipe(gulpIf(isDevelopment, sourcemaps.init()))
     .pipe(sass())
     .pipe(gulpIf(isDevelopment, sourcemaps.write('.')))
